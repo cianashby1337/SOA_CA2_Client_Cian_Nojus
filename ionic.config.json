@@ -1,0 +1,7 @@
+{
+  "name": "SOA_CA2_Client_Cian_Nojus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
