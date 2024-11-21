@@ -3,7 +3,7 @@
 - Android Studio
 - Visual Studio Code, with the Ionic extension
 
-# How to Create an Ionic app
+# How to Create and Run an Ionic app
 Enter the following commands into the terminal, in the order they are listed, within a directory of your choosing
 
 1. npm install -g @ionic/cli
