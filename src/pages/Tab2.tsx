@@ -1,37 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
-import axios from 'axios';
 
-// The function below, which gets data from our web api, was constructed with assistance 
-// from https://bobbyhadz.com/blog/typescript-http-request-axios#making-http-get-requests-with-axios-in-typescript
 
-async function getWeather() {
-  try {
-    const { data, status } = await axios.get(
-      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/WeatherForecast',
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      },
-    );
-
-    return data;
-
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log('error message: ', error.message);
-      return error.message;
-    } else {
-      console.log('unexpected error: ', error);
-      return 'An unexpected error occurred';
-    }
-  }
-}
-
-let data = "Weather data has not been retrieved";
-getWeather().then(response => data = JSON.stringify(response));
 
 const Tab2: React.FC = () => {
   return (
@@ -48,7 +19,6 @@ const Tab2: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
-        <p>{data}</p>
       </IonContent>
     </IonPage>
   );
