@@ -48,12 +48,10 @@ import './theme/variables.css';
 /* Google login service https://www.npmjs.com/package/@react-oauth/google */
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-console.log(import.meta.env.VITE_GOOGLE_LOGIN)
-
 setupIonicReact();
 
 const App: React.FC = () => (
-  <GoogleOAuthProvider clientId="123">
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
     <IonApp>
       <IonReactRouter>
         <IonTabs>

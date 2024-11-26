@@ -2,6 +2,8 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 
+import { GoogleLogin } from '@react-oauth/google';
+
 const Tab2: React.FC = () => {
   return (
     <IonPage>
@@ -17,6 +19,17 @@ const Tab2: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
+
+
+        <GoogleLogin
+        // This GoogleLogin element was taken from the guide of it's package: https://www.npmjs.com/package/@react-oauth/google
+          onSuccess={credentialResponse => {
+            console.log(credentialResponse);
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
+        />;
       </IonContent>
     </IonPage>
   );
