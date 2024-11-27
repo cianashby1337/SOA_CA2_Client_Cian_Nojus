@@ -12,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@capacitor/android": "6.2.0",
     "@capacitor/app": "6.0.2",
     "@capacitor/core": "6.2.0",
     "@capacitor/haptics": "6.0.2",
@@ -24,6 +25,7 @@
     "@types/react-router-dom": "^5.3.3",
     "dotenv": "^16.4.5",
     "eslint": "^9.15.0",
+    "axios": "^1.7.8",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

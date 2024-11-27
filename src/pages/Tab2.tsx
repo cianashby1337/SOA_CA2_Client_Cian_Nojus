@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 
+
 import { GoogleLogin } from '@react-oauth/google';
 
 // Function to decode the response was taken from wbq's answer at https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token
@@ -14,6 +15,7 @@ function decodeJwtResponse(token:string) {
 
   return JSON.parse(jsonPayload);
 }
+
 
 const Tab2: React.FC = () => {
   return (
