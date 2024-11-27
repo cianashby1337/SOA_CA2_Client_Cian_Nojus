@@ -10,10 +10,11 @@ import axios from 'axios';
 async function getWeather() {
   try {
     const { data, status } = await axios.get(
-      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/WeatherForecast',
+      'https://localhost:7241/api/Developers',
       {
         headers: {
           Accept: 'application/json',
+          'x-api-key':'1234567890'
         },
       },
     );
