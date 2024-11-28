@@ -1,8 +1,26 @@
 #addGameForm {
-	width: 50%;
-	background-color: white;
+	max-width: 500px;
+	background-color: rgb(248, 248, 248);
 	color: black;
 	margin:auto;
 	border:3px solid black;
 	border-radius: 10px;
+	padding: 1%;
+}
+
+.addGameFormItem  {
+	border: 1px solid rgb(206, 206, 206);
+	border-radius: 3px;
+	margin-bottom: 2px;
+	width: 70%;
+}
+
+.inputRow {
+	display: flex;
+	flex-direction: row;
+	width: auto;
+}
+
+.inputRow p {
+	width: 30%;
 }
