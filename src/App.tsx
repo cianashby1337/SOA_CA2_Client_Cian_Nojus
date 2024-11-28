@@ -10,10 +10,11 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { ellipse, square, star, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
+import AddGame from './pages/AddGame/AddGame';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -65,6 +66,9 @@ const App: React.FC = () => (
             <Route path="/tab3">
               <Tab3 />
             </Route>
+            <Route path="/AddGame">
+              <AddGame />
+            </Route>
             <Route exact path="/">
               <Redirect to="/tab1" />
             </Route>
@@ -81,6 +85,10 @@ const App: React.FC = () => (
             <IonTabButton tab="tab3" href="/tab3">
               <IonIcon aria-hidden="true" icon={square} />
               <IonLabel>Tab 3</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="AddGame" href="/AddGame">
+              <IonIcon aria-hidden="true" icon={star} />
+              <IonLabel>AddGame</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
