@@ -14,6 +14,7 @@ async function getWeather() {
       {
         headers: {
           Accept: 'application/json',
+          "x-api-key":import.meta.env.VITE_AZURE_KEY
         },
       },
     );

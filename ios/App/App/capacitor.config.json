@@ -1,0 +1,11 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "SOA_CA2_Client_Cian_Nojus",
+	"webDir": "dist",
+	"packageClassList": [
+		"AppPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"StatusBarPlugin"
+	]
+}
