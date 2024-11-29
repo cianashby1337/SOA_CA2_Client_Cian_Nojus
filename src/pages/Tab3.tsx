@@ -10,7 +10,7 @@ import axios from 'axios';
 async function getWeather() {
   try {
     const { data, status } = await axios.get(
-      'https://localhost:7241/api/Developers',
+      'https://localhost:7241/api/v1/Developers',
       {
         headers: {
           Accept: 'application/json',
