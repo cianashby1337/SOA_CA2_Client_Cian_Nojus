@@ -16,6 +16,10 @@
 	color: white;
 }
 
+.addGameFormSelect {
+	text-align: right;
+}
+
 .inputRow {
 	display: flex;
 	flex-direction: row;

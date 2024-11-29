@@ -18,7 +18,6 @@ const AddGame: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <AddGameForm/>
-        <ExploreContainer name="Add Game page" />
       </IonContent>
     </IonPage>
   );

@@ -6,10 +6,10 @@ import React, { useEffect,useState } from 'react';
 import './AddGameForm.css';
 
 //TODO: Get developers for use in dropdown
-async function getDeveloperList() {
+async function getAllFrom(version:number,table:string) {
 	try {
 		const { data, status } = await axios.get(
-		'https://localhost:7241/api/v1/Developers',
+		`https://localhost:7241/api/v${version}/${table}`,
 		{
 			headers: {
 			Accept: 'application/json',
@@ -34,10 +34,12 @@ async function getDeveloperList() {
 
 const AddGameForm: React.FC = () => {
 	const [developers, setDevelopers] = useState<any[]>([]);
+	const [platforms, setPlatforms] = useState<any[]>([]);
   
   
 	useEffect(() => {
-		getDeveloperList().then(setDevelopers);
+		getAllFrom(1,"Developers").then(setDevelopers);
+		getAllFrom(2,"Platforms").then(setPlatforms);
 	  },[]);
 	// IonList and IonInput were referenced from the official Ionic docs: https://ionicframework.com/docs/api/input
 	// IonDatetime was referenced from: https://ionicframework.com/docs/api/datetime#wheel-style-pickers
@@ -64,6 +66,13 @@ const AddGameForm: React.FC = () => {
 						<p>{developers.map((developer => <IonSelectOption value={developer.id}>{developer.name}</IonSelectOption>))}</p>
 					</IonSelect>
 				</div>
+				<div className="inputRow">
+					<p>Platform(s):</p>
+					<IonSelect className="addGameFormInput addGameFormSelect" multiple={true}>
+						<p>{platforms.map((platform => <IonSelectOption value={platform.id}>{platform.name}</IonSelectOption>))}</p>
+					</IonSelect>
+				</div>
+				
 			</IonList>
 		</>
   );
