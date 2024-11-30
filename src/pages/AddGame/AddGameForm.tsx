@@ -1,5 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonList, IonSelect, IonDatetime, IonSelectOption, IonButton } from '@ionic/react';
-import ExploreContainer from '../../components/ExploreContainer';
+import { IonInput, IonList, IonSelect, IonDatetime, IonSelectOption, IonButton } from '@ionic/react';
 import axios from 'axios';
 import React, { useEffect,useState } from 'react';
 
@@ -30,18 +29,72 @@ async function getAllFrom(version:number,table:string) {
 	}
 }
 
-function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
+// TODO for handleSubmit:
+// - Fix the lack of authorisation for the axios POST request
+// - In the case the user doesn't change the release date form input before submitting, find out how to assume the current year in place of "undefined"
+async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
 	console.log("Title: " + formTitle);
 	console.log("Genre: " + formGenre);
 	console.log("Release: " + formRelease);
 	console.log("Developer: " + formDeveloper);
 	console.log("Platform(s): " + formPlatforms);
 
-	if (formTitle == undefined) console.log("Error, title is undefined!")
-	if (formGenre == undefined) console.log("Error, genre is undefined!")
-	if (formRelease == undefined) console.log("Error, release date is undefined!")
-	if (formDeveloper == undefined) console.log("Error, developer is undefined!")
-	if (formPlatforms.length == 0) console.log("Error, platform(s) are undefined!")
+	var isValidPost:boolean = true;
+
+	if (formTitle == undefined) {
+		console.log("Error, title is undefined!");
+		isValidPost = false;
+	}
+	if (formGenre == undefined) {
+		console.log("Error, genre is undefined!");
+		isValidPost = false;
+	}
+	if (formRelease == undefined) {
+		console.log("Error, release date is undefined!");
+		isValidPost = false;
+	}
+	if (formDeveloper == undefined) {
+		console.log("Error, developer is undefined!");
+		isValidPost = false;
+	}
+	if (formPlatforms.length == 0) {
+		console.log("Error, platform(s) are undefined!");
+		isValidPost = false;
+	}
+
+	if(isValidPost) {
+		let date = new Date(formRelease)
+		try {
+			const { data, status } = await axios.post(
+				`https://localhost:7241/api/v2/Games`,
+				{
+					body: {
+						"id": 0,
+						"title": formTitle,
+						"genre": formGenre,
+						"release_year": date.getFullYear(),
+						"developerId": formDeveloper,
+						"platforms": formPlatforms
+					},
+					headers: {
+						Accept: 'application/json',
+						"x-api-key":import.meta.env.VITE_AZURE_KEY
+					},
+				},
+			);
+		
+			return data;
+		
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+			console.log('error message: ', error.message);
+			return error.message;
+			} else {
+			console.log('unexpected error: ', error);
+			return 'An unexpected error occurred';
+			}
+		}
+	}
 }
 
 
