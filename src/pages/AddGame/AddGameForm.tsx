@@ -1,11 +1,10 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonList, IonSelect, IonDatetime, IonSelectOption } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonList, IonSelect, IonDatetime, IonSelectOption, IonButton } from '@ionic/react';
 import ExploreContainer from '../../components/ExploreContainer';
 import axios from 'axios';
 import React, { useEffect,useState } from 'react';
 
 import './AddGameForm.css';
 
-//TODO: Get developers for use in dropdown
 async function getAllFrom(version:number,table:string) {
 	try {
 		const { data, status } = await axios.get(
@@ -31,10 +30,31 @@ async function getAllFrom(version:number,table:string) {
 	}
 }
 
+function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
+	console.log("Title: " + formTitle);
+	console.log("Genre: " + formGenre);
+	console.log("Release: " + formRelease);
+	console.log("Developer: " + formDeveloper);
+	console.log("Platform(s): " + formPlatforms);
+
+	if (formTitle == undefined) console.log("Error, title is undefined!")
+	if (formGenre == undefined) console.log("Error, genre is undefined!")
+	if (formRelease == undefined) console.log("Error, release date is undefined!")
+	if (formDeveloper == undefined) console.log("Error, developer is undefined!")
+	if (formPlatforms.length == 0) console.log("Error, platform(s) are undefined!")
+}
+
 
 const AddGameForm: React.FC = () => {
 	const [developers, setDevelopers] = useState<any[]>([]);
 	const [platforms, setPlatforms] = useState<any[]>([]);
+
+	
+	const [formTitle, setFormTitle] = useState<any>();
+	const [formGenre, setFormGenre] = useState<any>();
+	const [formRelease, setFormRelease] = useState<any>();
+	const [formDevelopers, setFormDevelopers] = useState<any>();
+	const [formPlatforms, setFormPlatforms] = useState<any[]>([]);
   
   
 	useEffect(() => {
@@ -50,29 +70,29 @@ const AddGameForm: React.FC = () => {
 			<IonList id="addGameForm">
 				<div className="inputRow">
 					<p>Game Title:</p>
-					<IonInput className="addGameFormInput"/>
+					<IonInput onIonChange={(e: any) => setFormTitle(e.target.value)} className="addGameFormInput" id="titleInput"/>
 				</div>
 				<div className="inputRow">
 					<p>Genre:</p>
-					<IonInput className="addGameFormInput"/>
+					<IonInput onIonChange={(e: any) => setFormGenre(e.target.value)} className="addGameFormInput"/>
 				</div>
 				<div className="inputRow">
 					<p>Release Year:</p>
-					<IonDatetime presentation="year" preferWheel={true} className="addGameFormWheel"/>
+					<IonDatetime onIonChange={(e: any) => setFormRelease(e.target.value)} presentation="year" preferWheel={true} className="addGameFormWheel"/>
 				</div>
 				<div className="inputRow">
 					<p>Developer:</p>
-					<IonSelect className="addGameFormInput">
+					<IonSelect onIonChange={(e: any) => setFormDevelopers(e.target.value)} className="addGameFormInput">
 						<p>{developers.map((developer => <IonSelectOption value={developer.id}>{developer.name}</IonSelectOption>))}</p>
 					</IonSelect>
 				</div>
 				<div className="inputRow">
 					<p>Platform(s):</p>
-					<IonSelect className="addGameFormInput addGameFormSelect" multiple={true}>
+					<IonSelect onIonChange={(e: any) => setFormPlatforms(e.target.value)} className="addGameFormInput addGameFormSelect" multiple={true}>
 						<p>{platforms.map((platform => <IonSelectOption value={platform.id}>{platform.name}</IonSelectOption>))}</p>
 					</IonSelect>
 				</div>
-				
+				<IonButton onClick={e => handleSubmit(formTitle, formGenre, formRelease, formDevelopers, formPlatforms)}>Submit</IonButton>
 			</IonList>
 		</>
   );
