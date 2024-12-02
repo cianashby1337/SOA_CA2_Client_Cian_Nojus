@@ -16,6 +16,11 @@ async function getPlatforms() {
         headers: {
           Accept: 'application/json',
           'X-Api-Key':"1234567890"
+      'https://localhost:7241/api/v1/Developers',
+      {
+        headers: {
+          Accept: 'application/json',
+          "x-api-key":import.meta.env.VITE_AZURE_KEY
         },
       },
     );
