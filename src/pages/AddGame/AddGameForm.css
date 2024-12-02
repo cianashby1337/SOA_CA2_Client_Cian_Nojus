@@ -1,0 +1,35 @@
+#addGameForm {
+	max-width: 500px;
+	color: black;
+	margin:auto;
+	border:3px solid rgb(255, 0, 0);
+	border-radius: 10px;
+	padding: 1%;
+}
+
+.addGameFormWheel, .addGameFormInput  {
+	background-color: #121212;
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 3px;
+	margin-bottom: 2px;
+	width: 70%;
+	color: white;
+}
+
+.addGameFormSelect {
+	text-align: right;
+}
+
+.inputRow {
+	display: flex;
+	flex-direction: row;
+	width: auto;
+}
+
+.inputRow p {
+	width: 30%;
+}
+
+p {
+	color: red;
+}
