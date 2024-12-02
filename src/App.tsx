@@ -57,7 +57,14 @@ const App: React.FC = () => {
 
   function googleLogin(emailAddress:string) {
     console.log(emailAddress);
+    setLoggedIn(true);
   }
+
+ 
+  const homeScreen = <Tab1 />
+  const loginScreen = <Tab2 login={googleLogin}/>
+  const tableScreen = <Tab3 />
+  const addGameScreen = <AddGame />
 
   return (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
@@ -65,33 +72,29 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tab1">
-            {loggedIn ? <Tab1 /> : <Tab2 login={googleLogin}/>}
+            <Route exact path="/home">
+              {loggedIn ? homeScreen : loginScreen}
             </Route>
-            <Route exact path="/tab2">
-              <Tab2 />
+            <Route exact path="/login">
+              {loginScreen}
             </Route>
-            <Route path="/tab3">
-            {loggedIn ? <Tab3 /> : <Tab2 />}
+            <Route path="/gameTable">
+              {loggedIn ? tableScreen : loginScreen}
             </Route>
-            <Route path="/AddGame">
-            {loggedIn ? <AddGame /> : <Tab2 />}
+            <Route path="/addGame">
+              {loggedIn ? addGameScreen : loginScreen}
             </Route>
             <Route exact path="/">
-              <Redirect to="/tab1" />
+              <Redirect to="/home" />
             </Route>
           </IonRouterOutlet>
           
           {loggedIn ? <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/tab1">
+            <IonTabButton tab="tab1" href="/home">
               <IonIcon aria-hidden="true" icon={triangle} />
               <IonLabel>Tab 1</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
-              <IonIcon aria-hidden="true" icon={ellipse} />
-              <IonLabel>Tab 2</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
+            <IonTabButton tab="tab3" href="/gameTable">
               <IonIcon aria-hidden="true" icon={square} />
               <IonLabel>Tab 3</IonLabel>
             </IonTabButton>
