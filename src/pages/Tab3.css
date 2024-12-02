@@ -1,0 +1,32 @@
+table{
+    margin: 20px auto;
+    width: 80%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    background-color: #2c2c2c;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #920303;
+}
+
+ul{
+    margin: 5px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    justify-content: center;
+}
+th {
+    background-color: #920303;
+    justify-content: center;
+}

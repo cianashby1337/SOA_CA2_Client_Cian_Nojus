@@ -9,6 +9,8 @@ Next, enter the following commands into the terminal, in the order they are list
 
 # References
 - Introduction to setting up an Ionic app: https://ionicframework.com/docs/react 
+- Creating the tables from the API: https://youtu.be/xniVQNpdiNY?si=fPg2ylW18Gw5gg4z
+- Using axios to make a get request to our API: https://bobbyhadz.com/blog/typescript-http-request-axios#making-http-get-requests-with-axios-in-typescript
 - Initial introduction to axios, making a get request to our API: https://bobbyhadz.com/blog/typescript-http-request-axios#making-http-get-requests-with-axios-in-typescript
 - Google login service https://www.npmjs.com/package/@react-oauth/google
 - Set up vite environment variables: https://vite.dev/guide/env-and-mode.html
