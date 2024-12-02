@@ -16,8 +16,13 @@ function decodeJwtResponse(token:string) {
   return JSON.parse(jsonPayload);
 }
 
+// Interface solution to setting up props retrieved from: https://forum.ionicframework.com/t/how-to-pass-props-to-components-in-ionic-react/216054
+interface ScanNewProps {
+  login: any;
+}
 
-const Tab2: React.FC = () => {
+const Tab2: React.FC<ScanNewProps> = ({login}) => {
+  
   return (
     <IonPage>
       <IonHeader>
@@ -40,7 +45,7 @@ const Tab2: React.FC = () => {
           onSuccess={credentialResponse => {
             if(credentialResponse.credential != null) {
               const USER_CREDENTIAL = decodeJwtResponse(credentialResponse.credential);
-              console.log(USER_CREDENTIAL);
+              login(USER_CREDENTIAL.email);
              }
           }}
           onError={() => {

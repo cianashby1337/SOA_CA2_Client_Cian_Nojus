@@ -53,7 +53,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+
+  function googleLogin(emailAddress:string) {
+    console.log(emailAddress);
+  }
 
   return (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
@@ -62,7 +66,7 @@ const App: React.FC = () => {
         <IonTabs>
           <IonRouterOutlet>
             <Route exact path="/tab1">
-            {loggedIn ? <Tab1 /> : <Tab2 />}
+            {loggedIn ? <Tab1 /> : <Tab2 login={googleLogin}/>}
             </Route>
             <Route exact path="/tab2">
               <Tab2 />
