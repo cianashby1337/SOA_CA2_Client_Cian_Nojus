@@ -1,4 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
+import { useState } from 'react';
 import {
   IonApp,
   IonIcon,
@@ -51,29 +52,33 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 setupIonicReact();
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+
+  return (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
             <Route exact path="/tab1">
-              <Tab1 />
+            {loggedIn ? <Tab1 /> : <Tab2 />}
             </Route>
             <Route exact path="/tab2">
               <Tab2 />
             </Route>
             <Route path="/tab3">
-              <Tab3 />
+            {loggedIn ? <Tab3 /> : <Tab2 />}
             </Route>
             <Route path="/AddGame">
-              <AddGame />
+            {loggedIn ? <AddGame /> : <Tab2 />}
             </Route>
             <Route exact path="/">
               <Redirect to="/tab1" />
             </Route>
           </IonRouterOutlet>
-          <IonTabBar slot="bottom">
+          
+          {loggedIn ? <IonTabBar slot="bottom">
             <IonTabButton tab="tab1" href="/tab1">
               <IonIcon aria-hidden="true" icon={triangle} />
               <IonLabel>Tab 1</IonLabel>
@@ -90,11 +95,13 @@ const App: React.FC = () => (
               <IonIcon aria-hidden="true" icon={star} />
               <IonLabel>AddGame</IonLabel>
             </IonTabButton>
-          </IonTabBar>
+          </IonTabBar> : null}
+          
         </IonTabs>
       </IonReactRouter>
     </IonApp>
   </GoogleOAuthProvider>
 );
+};
 
 export default App;
