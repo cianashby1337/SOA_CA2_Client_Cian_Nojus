@@ -1,5 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
+
 import {
   IonApp,
   IonIcon,
@@ -52,12 +54,53 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 setupIonicReact();
 
+interface responseContainer {
+  data:any,
+  status:number
+}
+
+async function tryLogin(email:string) {
+  try {
+    const { data, status } = await axios.get(
+    `https://localhost:7241/api/users/login/${email}`,
+    {
+      headers: {
+      Accept: 'application/json',
+      "x-api-key":import.meta.env.VITE_AZURE_KEY
+      },
+    },
+    );
+  
+    return {data:data, status:status};
+  
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+    console.log('error message: ', error.message);
+    return error.message;
+    } else {
+    console.log('unexpected error: ', error);
+    return 'An unexpected error occurred';
+    }
+  }
+}
+
+
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [isAdministrator, setIsAdministrator] = useState<boolean>(false);
 
   function googleLogin(emailAddress:string) {
-    console.log(emailAddress);
+    tryLogin(emailAddress)
+    .then(response => {
+      if (typeof response != "string" && response?.status != undefined) response.status == 200 ? 
+      handleSuccessfulLogin(response) : console.log("User not registered");
+      else console.log("Invalid response format:", response);
+    })
+  }
+
+  function handleSuccessfulLogin(response:{data:any,status:number}) {
     setLoggedIn(true);
+    response.data.isAdministrator ? setIsAdministrator(true) : null;
   }
 
  

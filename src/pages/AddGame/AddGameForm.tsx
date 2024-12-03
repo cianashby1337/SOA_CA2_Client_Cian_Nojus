@@ -30,8 +30,8 @@ async function getAllFrom(version:number,table:string) {
 }
 
 // TODO for handleSubmit:
-// - Fix the lack of authorisation for the axios POST request
 // - In the case the user doesn't change the release date form input before submitting, find out how to assume the current year in place of "undefined"
+
 async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
 	console.log("Title: " + formTitle);
 	console.log("Genre: " + formGenre);
@@ -70,7 +70,7 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 			const { data, status } = await axios.post(
 				`https://localhost:7241/api/v2/Games`,
 				{
-					"Id": 0,
+					"Id":0,
 					"title": formTitle,
 					"genre": formGenre,
 					"release_year": date.getFullYear(),
@@ -99,6 +99,7 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 		}
 	}
 }
+	
 
 
 const AddGameForm: React.FC = () => {
