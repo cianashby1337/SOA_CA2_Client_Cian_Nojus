@@ -100,9 +100,11 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 	}
 }
 	
+interface AddGameFormProps {
+	isAdministrator: boolean;
+  }
 
-
-const AddGameForm: React.FC = () => {
+const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 	const [developers, setDevelopers] = useState<any[]>([]);
 	const [platforms, setPlatforms] = useState<any[]>([]);
 
@@ -122,7 +124,7 @@ const AddGameForm: React.FC = () => {
 	// IonDatetime was referenced from: https://ionicframework.com/docs/api/datetime#wheel-style-pickers
 	// IonSelect and IonSelectOption were referenced from: https://ionicframework.com/docs/api/select
 
-  return (
+  return isAdministrator? (
 		<>
 			<IonList id="addGameForm">
 				<div className="inputRow">
@@ -152,7 +154,9 @@ const AddGameForm: React.FC = () => {
 				<IonButton onClick={e => handleSubmit(formTitle, formGenre, formRelease, formDevelopers, formPlatforms)}>Submit</IonButton>
 			</IonList>
 		</>
-  );
+		)
+		:
+		<p>We're sorry, but you do not have the correct permissions to add a game to our database. Please contact an administrator if you believe you should be allowed to add games.</p>
 };
 
 export default AddGameForm;

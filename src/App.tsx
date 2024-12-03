@@ -107,7 +107,7 @@ const App: React.FC = () => {
   const homeScreen = <Tab1 />
   const loginScreen = <Tab2 login={googleLogin}/>
   const tableScreen = <Tab3 />
-  const addGameScreen = <AddGame />
+  const addGameScreen = <AddGame isAdministrator={isAdministrator}/>
 
   return (
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
