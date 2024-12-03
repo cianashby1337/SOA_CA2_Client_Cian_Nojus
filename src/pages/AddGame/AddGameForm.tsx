@@ -64,19 +64,25 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 
 	if(isValidPost) {
 		let date = new Date(formRelease)
+		let url = `https://localhost:7241/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
+		// for each platform, append "&platforms=${i}"
+		formPlatforms.forEach(platform => {
+			url = url.concat(`&platforms=${platform}`);
+		});
+
 		try {
 			// The fix for the axios.post() issue, where we got a 401 error even with the key being sent, was found here, revealing a formatting error in the post method:
 			// https://axios-http.com/docs/post_example
 			const { data, status } = await axios.post(
-				`https://localhost:7241/api/v2/Games`,
-				{
-					"Id":0,
-					"title": formTitle,
-					"genre": formGenre,
-					"release_year": date.getFullYear(),
-					"developerId": formDeveloper,
-					"Platforms": formPlatforms,
-				},
+			url ,
+			{
+				"Id":0,
+				"title": formTitle,
+				"genre": formGenre,
+				"release_year": date.getFullYear(),
+				"developerId": formDeveloper,
+				"Platforms": formPlatforms,
+			},
 				{
 					headers: {
 						Accept: 'application/json',
