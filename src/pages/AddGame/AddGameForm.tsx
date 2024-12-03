@@ -30,8 +30,8 @@ async function getAllFrom(version:number,table:string) {
 }
 
 // TODO for handleSubmit:
-// - Fix the lack of authorisation for the axios POST request
 // - In the case the user doesn't change the release date form input before submitting, find out how to assume the current year in place of "undefined"
+
 async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
 	console.log("Title: " + formTitle);
 	console.log("Genre: " + formGenre);
@@ -64,19 +64,25 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 
 	if(isValidPost) {
 		let date = new Date(formRelease)
+		let url = `https://localhost:7241/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
+		// for each platform, append "&platforms=${i}"
+		formPlatforms.forEach(platform => {
+			url = url.concat(`&platforms=${platform}`);
+		});
+
 		try {
 			// The fix for the axios.post() issue, where we got a 401 error even with the key being sent, was found here, revealing a formatting error in the post method:
 			// https://axios-http.com/docs/post_example
 			const { data, status } = await axios.post(
-				`https://localhost:7241/api/v2/Games`,
-				{
-					"Id": 0,
-					"title": formTitle,
-					"genre": formGenre,
-					"release_year": date.getFullYear(),
-					"developerId": formDeveloper,
-					"Platforms": formPlatforms,
-				},
+			url ,
+			{
+				"Id":0,
+				"title": formTitle,
+				"genre": formGenre,
+				"release_year": date.getFullYear(),
+				"developerId": formDeveloper,
+				"Platforms": formPlatforms,
+			},
 				{
 					headers: {
 						Accept: 'application/json',
@@ -99,9 +105,12 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 		}
 	}
 }
+	
+interface AddGameFormProps {
+	isAdministrator: boolean;
+  }
 
-
-const AddGameForm: React.FC = () => {
+const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 	const [developers, setDevelopers] = useState<any[]>([]);
 	const [platforms, setPlatforms] = useState<any[]>([]);
 
@@ -121,7 +130,7 @@ const AddGameForm: React.FC = () => {
 	// IonDatetime was referenced from: https://ionicframework.com/docs/api/datetime#wheel-style-pickers
 	// IonSelect and IonSelectOption were referenced from: https://ionicframework.com/docs/api/select
 
-  return (
+  return isAdministrator? (
 		<>
 			<IonList id="addGameForm">
 				<div className="inputRow">
@@ -151,7 +160,9 @@ const AddGameForm: React.FC = () => {
 				<IonButton onClick={e => handleSubmit(formTitle, formGenre, formRelease, formDevelopers, formPlatforms)}>Submit</IonButton>
 			</IonList>
 		</>
-  );
+		)
+		:
+		<p>We're sorry, but you do not have the correct permissions to add a game to our database. Please contact an administrator if you believe you should be allowed to add games.</p>
 };
 
 export default AddGameForm;

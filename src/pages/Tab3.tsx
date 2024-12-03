@@ -11,12 +11,7 @@ import axios from 'axios';
 async function getPlatforms() {
   try {
     const { data, status } = await axios.get(
-      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/Platforms',
-      {
-        headers: {
-          Accept: 'application/json',
-          'X-Api-Key':"1234567890"
-      'https://localhost:7241/api/v1/Developers',
+      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/platforms',
       {
         headers: {
           Accept: 'application/json',
@@ -41,11 +36,11 @@ async function getPlatforms() {
 async function getDevelopers() {
   try {
     const { data, status } = await axios.get(
-      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v1/Developers',
+      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v1/developers',
       {
         headers: {
           Accept: 'application/json',
-          'X-Api-Key':"1234567890"
+          "x-api-key":import.meta.env.VITE_AZURE_KEY
         },
       },
     );
@@ -67,11 +62,11 @@ async function getDevelopers() {
 async function getGames() {
   try {
     const { data, status } = await axios.get(
-      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/Games',
+      'https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/games',
       {
         headers: {
           Accept: 'application/json',
-          'X-Api-Key':"1234567890"
+          "x-api-key":import.meta.env.VITE_AZURE_KEY
         },
       },
     );

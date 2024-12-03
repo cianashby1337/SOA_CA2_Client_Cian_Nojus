@@ -3,7 +3,11 @@ import ExploreContainer from '../../components/ExploreContainer';
 import './AddGame.css';
 import AddGameForm from './AddGameForm';
 
-const AddGame: React.FC = () => {
+interface AddGameProps {
+	isAdministrator: boolean;
+  }
+
+const AddGame: React.FC<AddGameProps> = ({isAdministrator}) => {
   return (
     <IonPage>
       <IonHeader>
@@ -17,7 +21,7 @@ const AddGame: React.FC = () => {
             <IonTitle size="large">Add Game</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <AddGameForm/>
+        <AddGameForm isAdministrator={isAdministrator}/>
       </IonContent>
     </IonPage>
   );
