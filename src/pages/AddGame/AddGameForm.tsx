@@ -64,7 +64,7 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 
 	if(isValidPost) {
 		let date = new Date(formRelease)
-		let url = `https://localhost:7241/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
+		let url = `https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
 		// for each platform, append "&platforms=${i}"
 		formPlatforms.forEach(platform => {
 			url = url.concat(`&platforms=${platform}`);

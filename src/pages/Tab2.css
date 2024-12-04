@@ -1,0 +1,33 @@
+
+.IonTitle {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonButton {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonInput {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonItem {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.GoogleLogin {
+    text-align: center;
+}

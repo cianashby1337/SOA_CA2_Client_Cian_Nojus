@@ -26,17 +26,22 @@ const Tab2: React.FC<ScanNewProps> = ({login}) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+        <IonToolbar className='toolbar'>
+          <IonTitle className='title'>SMOKING BARREL API</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Login</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <div className='content'>
+            <div className ="intro_text">
+              <h1>Welcome to the Smoking Barrel API</h1>
+              <h2>Please login to continue</h2>
+            </div>
+        </div>
 
 
         <GoogleLogin
@@ -51,7 +56,7 @@ const Tab2: React.FC<ScanNewProps> = ({login}) => {
           onError={() => {
             console.log('Login Failed');
           }}
-        />;
+        />
       </IonContent>
     </IonPage>
   );

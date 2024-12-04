@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 import React, { useEffect,useState } from 'react';
@@ -90,6 +90,10 @@ const Tab3: React.FC = () => {
   const [developers, setDevelopers] = useState<any[]>([]);
   const [platforms, setPlatforms] = useState<any[]>([]);
 
+  const [currentPageGames, setCurrentGames] = useState<number>(1);
+  const [currentPageDevelopers, setCurrentDevelopers] = useState<number>(1);
+  const [currentPagePlatforms, setCurrentPlatforms] = useState<number>(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     getGames().then(setGames);
@@ -97,17 +101,27 @@ const Tab3: React.FC = () => {
     getPlatforms().then(setPlatforms);
     },[]);
 
+    const paginate = (data:any[], currentPage: number) => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return data.slice(startIndex, endIndex);
+    };
+
+    const totalPagesGames = Math.ceil(games.length / itemsPerPage);
+    const totalPagesDevelopers = Math.ceil(developers.length / itemsPerPage);
+    const totalPagesPlatforms = Math.ceil(platforms.length / itemsPerPage);
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>Smoking Barrel API</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
+            <IonTitle size="large">Smoking Barrel API</IonTitle>
           </IonToolbar>
         </IonHeader>
         <h1>GAMES</h1>
@@ -121,7 +135,7 @@ const Tab3: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {games.map((game) => (
+            {paginate(games, currentPageGames).map((game) => (
               <tr key = {game.id}> 
                 <td>{game.title}</td>
                 <td>{game.genre}</td>
@@ -142,6 +156,26 @@ const Tab3: React.FC = () => {
           </tbody>
             </table>
 
+            <div>
+              <div className='pagination_container'>
+              <IonButton
+               className='pagination_button'
+                onClick={() => setCurrentGames((prev) => prev - 1)}
+                disabled={currentPageGames === 1}>
+                Previous
+                </IonButton>
+
+            <div>
+            <IonButton
+             className='pagination_button'
+              onClick={() => setCurrentGames((prev) => prev + 1)}
+              disabled={currentPageGames === totalPagesGames}>
+              Next
+              </IonButton>
+            </div>
+            </div>
+
+        </div>
             <br></br>
             <h1>DEVELOPERS</h1>
             <table>
@@ -153,7 +187,7 @@ const Tab3: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {developers.map((developer) => (
+            {paginate(developers, currentPageDevelopers).map((developer) => (
               <tr key = {developer.id}> 
                 <td>{developer.name}</td>
                 <td>{developer.country}</td>
@@ -172,7 +206,24 @@ const Tab3: React.FC = () => {
             ))}
           </tbody>
             </table>
-
+            <div>
+            <div className='pagination_container'>
+              <IonButton
+               className='pagination_button'
+                onClick={() => setCurrentDevelopers((prev) => prev - 1)}
+                disabled={currentPageDevelopers === 1}>
+                Previous
+                </IonButton>
+            <div>
+              <IonButton 
+               className='pagination_button'
+                onClick={() => setCurrentDevelopers((prev) => prev + 1)}
+                disabled={currentPageDevelopers === totalPagesDevelopers}>
+                Next
+                </IonButton>
+            </div>
+            </div>
+            </div>
             <br></br>
             <h1>PLATFORMS</h1>
             <table>
@@ -184,7 +235,7 @@ const Tab3: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {platforms.map((platform) => (
+            {paginate(platforms, currentPagePlatforms).map((platform) => (
               <tr key = {platform.id}> 
                 <td>{platform.name}</td>
                 <td>{platform.manufacturer}</td>
@@ -203,6 +254,24 @@ const Tab3: React.FC = () => {
             ))}
           </tbody>
             </table>
+            <div>
+            <div className='pagination_container'>
+              <IonButton
+               className='pagination_button'
+                onClick={() => setCurrentPlatforms((prev) => prev - 1)}
+                disabled={currentPagePlatforms === 1}>
+                Previous
+                </IonButton>
+            <div>
+              <IonButton 
+              className='pagination_button'
+                onClick={() => setCurrentPlatforms((prev) => prev + 1)}
+                disabled={currentPagePlatforms === totalPagesPlatforms}>
+                Next
+                </IonButton>
+            </div>
+            </div>
+            </div>
       </IonContent>
     </IonPage>
   );
