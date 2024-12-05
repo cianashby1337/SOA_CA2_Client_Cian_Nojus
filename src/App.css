@@ -1,0 +1,9 @@
+ion-tab-button::part(native) {
+    color: #dadada;
+  }
+  
+  ion-tab-button:hover::part(native) {
+    color: rgb(255,70,84) !important;
+  }
+  
+  

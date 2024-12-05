@@ -11,7 +11,7 @@ table, th, td {
 }
 
 th {
-    background-color: #920303 !important;
+    background-color: #c42741 !important;
     color: #000000;
     padding: 15px;
     justify-content: center;
@@ -23,7 +23,7 @@ table:after {
     content: '';
     display: block;
     height: 5px;
-    border-color: #920303;
+    border-color: #c42741 ;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     position: absolute;
@@ -42,7 +42,7 @@ tbody tr:nth-child(odd) {
 
 tbody tr:hover {
     background-color: #00000054 !important;
-    color: red;
+    color: #e64963 !important;
     cursor: pointer;
 }
 
@@ -63,7 +63,7 @@ ul{
 h1 {
     text-align: center;
     margin-top: 20px;
-    color: #920303;
+    color: #c42741 !important;
 }
 
 /*------------------Pagination button----------------*/

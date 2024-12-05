@@ -115,7 +115,7 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Smoking Barrel API</IonTitle>
+          <IonTitle>Smoking Barrel API - TABLES</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

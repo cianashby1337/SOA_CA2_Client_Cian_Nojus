@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import './App.css';
 
 import {
   IonApp,
@@ -13,7 +14,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, star, triangle } from 'ionicons/icons';
+import { add, book, ellipse, folder, square, star, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -34,6 +35,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
+
 
 /**
  * Ionic Dark Mode
@@ -86,8 +88,9 @@ async function tryLogin(email:string) {
 
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [isAdministrator, setIsAdministrator] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [isAdministrator, setIsAdministrator] = useState<boolean>(true
+  );
 
   function googleLogin(emailAddress:string) {
     tryLogin(emailAddress)
@@ -116,6 +119,7 @@ const App: React.FC = () => {
         <IonTabs>
           <IonRouterOutlet>
             <Route exact path="/home">
+            
               {loggedIn ? homeScreen : loginScreen}
             </Route>
             <Route exact path="/login">
@@ -133,17 +137,17 @@ const App: React.FC = () => {
           </IonRouterOutlet>
           
           {loggedIn ? <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/home">
-              <IonIcon aria-hidden="true" icon={triangle} />
-              <IonLabel>Tab 1</IonLabel>
+            <IonTabButton tab="Documentation" href="/home">
+              <IonIcon aria-hidden="true" icon={book} />
+              <IonLabel>Documentation</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/gameTable">
-              <IonIcon aria-hidden="true" icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+            <IonTabButton tab="View Data" href="/gameTable">
+              <IonIcon aria-hidden="true" icon={folder} />
+              <IonLabel>View Data</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="AddGame" href="/AddGame">
-              <IonIcon aria-hidden="true" icon={star} />
-              <IonLabel>AddGame</IonLabel>
+            <IonTabButton tab="Add Game" href="/AddGame">
+              <IonIcon aria-hidden="true" icon={add} />
+              <IonLabel>Add Game</IonLabel>
             </IonTabButton>
           </IonTabBar> : null}
           
