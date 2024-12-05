@@ -30,5 +30,8 @@ jobs:
       - name: Run unit tests
         run: npm run test.unit
 
+      - name: Start ionic server
+        run: ionic serve
+        
       - name: Run e2e tests
         run: npm run test.e2e
