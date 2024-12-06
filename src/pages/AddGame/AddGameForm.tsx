@@ -7,7 +7,7 @@ import './AddGameForm.css';
 async function getAllFrom(version:number,table:string) {
 	try {
 		const { data, status } = await axios.get(
-		`https://localhost:7241/api/v${version}/${table}`,
+		`https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v${version}/${table}`,
 		{
 			headers: {
 			Accept: 'application/json',
@@ -32,7 +32,7 @@ async function getAllFrom(version:number,table:string) {
 // TODO for handleSubmit:
 // - In the case the user doesn't change the release date form input before submitting, find out how to assume the current year in place of "undefined"
 
-async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:number[]) {
+async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:string[]) {
 	console.log("Title: " + formTitle);
 	console.log("Genre: " + formGenre);
 	console.log("Release: " + formRelease);
@@ -64,7 +64,7 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 
 	if(isValidPost) {
 		let date = new Date(formRelease)
-		let url = `https://localhost:7241/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
+		let url = `https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v2/games?id=0&title=${formTitle}&genre=${formGenre}&release_year=${date.getFullYear()}&developer_id=${formDeveloper}`
 		// for each platform, append "&platforms=${i}"
 		formPlatforms.forEach(platform => {
 			url = url.concat(`&platforms=${platform}`);
@@ -123,8 +123,8 @@ const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
   
   
 	useEffect(() => {
-		getAllFrom(1,"Developers").then(setDevelopers);
-		getAllFrom(2,"Platforms").then(setPlatforms);
+		getAllFrom(1,"developers").then(setDevelopers);
+		getAllFrom(2,"platforms").then(setPlatforms);
 	  },[]);
 	// IonList and IonInput were referenced from the official Ionic docs: https://ionicframework.com/docs/api/input
 	// IonDatetime was referenced from: https://ionicframework.com/docs/api/datetime#wheel-style-pickers
@@ -132,6 +132,12 @@ const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 
   return isAdministrator? (
 		<>
+		     <div className = "banner_add_games" >
+   ADD GAME FORM
+    </div>
+    <img src="images\right.webp" alt="Banner Image" className="left_banner_image_add_game" />
+    <img src="images\left2.png" alt="Banner Image" className="right_banner_image_add_game" />
+
 			<IonList id="addGameForm">
 				<div className="inputRow">
 					<p>Game Title:</p>
@@ -157,7 +163,7 @@ const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 						<p>{platforms.map((platform => <IonSelectOption value={platform.id}>{platform.name}</IonSelectOption>))}</p>
 					</IonSelect>
 				</div>
-				<IonButton onClick={e => handleSubmit(formTitle, formGenre, formRelease, formDevelopers, formPlatforms)}>Submit</IonButton>
+				<IonButton className="submit_button" onClick={e => handleSubmit(formTitle, formGenre, formRelease, formDevelopers, formPlatforms)}>Submit</IonButton>
 			</IonList>
 		</>
 		)

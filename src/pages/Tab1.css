@@ -1,0 +1,43 @@
+
+
+.banner {
+  text-align: center;
+  background-color: #c42741;
+  font-family: serif;
+  color: #ffffff; 
+  padding: 20px 0;
+  font-size: 35px;
+  font-weight: bold;
+  position: relative; 
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+.banner::before,
+.banner::after {
+  content: ''; 
+  position: absolute;
+  left: 10%; 
+  right: 10%; 
+  height: 3px; 
+  background-color: #272727; 
+}
+
+.banner::before {
+  top: 10%; 
+}
+
+.banner::after {
+  bottom: 10%;
+}
+
+.footer_border {
+  border-top: 2px solid #c42741;
+  margin-top: 20px;
+}
+
+.banner_image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0%;
+  object-fit: cover;
+}

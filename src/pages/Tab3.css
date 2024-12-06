@@ -2,17 +2,54 @@ table{
     margin: 20px auto;
     width: 80%;
     border-collapse: collapse;
+    border-spacing: 0;
+    position: relative;
 }
 table, th, td {
-    border: 1px solid black;
+    border: none;
     text-align: center;
-    background-color: #2c2c2c;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #920303;
+th {
+    background-color: #c42741 !important;
+    color: #000000;
+    padding: 15px;
+    justify-content: center;
+}
+
+
+
+table:after {
+    content: '';
+    display: block;
+    height: 5px;
+    border-color: #c42741 ;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #2c2c2c !important;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #3f3f3f !important;
+}
+
+tbody tr:hover {
+    background-color: #00000054 !important;
+    color: #e64963 !important;
+    cursor: pointer;
+}
+
+td {
+    padding: 15px;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0) !important;
 }
 
 ul{
@@ -22,11 +59,88 @@ ul{
     text-align: left;
 }
 
-th, td {
-    padding: 15px;
-    justify-content: center;
+/*------------------ Headers ----------------*/
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #c42741 !important;
 }
-th {
-    background-color: #920303;
+
+/*------------------Pagination button----------------*/
+
+.pagination_button {
+    background-color: #c42741;
+    color: white; 
+    border: none; 
+    padding: 3px 6px;
+    font-size: 0.8rem; 
+    margin: 0 5px; 
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center; 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease; 
+}
+
+.pagination_button:hover {
+    background-color: #9b1e2b;
+}
+
+.pagination_container {
+    margin-top: 13px;
+    display: flex; 
     justify-content: center;
+    align-items: center; 
+}
+
+ion-button.pagination_button {
+    --background: #c42741;
+    --background-activated: #9b1e2b; 
+    --background-focused: #c42741; 
+    --background-hover: #9b1e2b; 
+    --color: white; 
+    --box-shadow: none;
+    --border-radius: 4px; 
+}
+
+ion-button.pagination_button:hover {
+    --background: #9b1e2b;
+}
+
+ion-button.pagination_button:focus {
+    outline: none;
+    --box-shadow: none;
+}
+
+ion-button.pagination_button:active {
+    --background: #9b1e2b;
+}
+
+
+.left_banner_image_tables{
+	width: 9%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0.5;
+    padding-top: 50px;
+    margin-top: 5px;
+
+}
+
+.right_banner_image_tables{
+	width: 9%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	margin-right: 20px;
+	opacity: 0.5;
 }

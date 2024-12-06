@@ -26,20 +26,27 @@ const Tab2: React.FC<ScanNewProps> = ({login}) => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
+        <IonToolbar className='toolbar'>
+          <IonTitle className='title'>NEXUS API</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
+      <img src="images\login.webp" alt="Banner Image" className="left_banner_image_login" />
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
+            <IonTitle size="large">Login</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <div className='content'>
+            <div className ="intro_text">
+              <h1>Welcome to the NEXUS API</h1>
+              <h2>Please login to continue</h2>
+            </div>
+        </div>
 
 
-        <GoogleLogin
+        <GoogleLogin 
         // This GoogleLogin element was constructed from the guide of it's package: https://www.npmjs.com/package/@react-oauth/google
         // In addition, the JWT response decoding takes code from Ali Zulfikar's answer at https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token
           onSuccess={credentialResponse => {
@@ -51,7 +58,7 @@ const Tab2: React.FC<ScanNewProps> = ({login}) => {
           onError={() => {
             console.log('Login Failed');
           }}
-        />;
+        />
       </IonContent>
     </IonPage>
   );

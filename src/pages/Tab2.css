@@ -1,0 +1,52 @@
+
+.IonTitle {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonButton {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonInput {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.IonItem {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.GoogleLogin {
+    text-align: center;
+}
+
+.left_banner_image_login{
+    width: 100%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	right: 0;
+    left: 0;
+	z-index: -1;
+	margin-right: 20px;
+	opacity: 0.2;
+}
+
+
+.intro_text,h2 {
+    text-align: center;
+}

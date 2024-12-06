@@ -2,9 +2,37 @@
 	max-width: 500px;
 	color: black;
 	margin:auto;
-	border:3px solid rgb(255, 0, 0);
+	border:3px solid  #c42741;
 	border-radius: 10px;
 	padding: 1%;
+	margin-bottom: 20px;
+}
+
+.left_banner_image_add_game{
+	width: 25%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	margin-top:5%;
+	opacity: 0.5;
+
+}
+
+.right_banner_image_add_game{
+	width: 25%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	margin-right: 20px;
+	opacity: 0.5;
 }
 
 .addGameFormWheel, .addGameFormInput  {
@@ -14,6 +42,14 @@
 	margin-bottom: 2px;
 	width: 70%;
 	color: white;
+}
+
+.submit_button {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
+	color: white;
+	border-radius: 3px;
 }
 
 .addGameFormSelect {
@@ -31,7 +67,7 @@
 }
 
 p {
-	color: red;
+	color:  #c42741;
 }
 
 table{
@@ -66,3 +102,36 @@ th {
     background-color: #920303;
     justify-content: center;
 }
+
+
+.banner_add_games {
+	text-align: center;
+	background-color: #c42741;
+	font-family: serif;
+	color: #ffffff; 
+	padding: 20px 0;
+	font-size: 35px;
+	font-weight: bold;
+	position: relative; 
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); 
+	margin-bottom: 20px;
+	width: 100%;
+  }
+  
+  .banner_add_games::before,
+  .banner_add_games::after {
+	content: ''; 
+	position: absolute;
+	left: 10%; 
+	right: 10%; 
+	height: 3px; 
+	background-color: #272727; 
+  }
+  
+  .banner_add_games::before {
+	top: 10%; 
+  }
+  
+  .banner_add_games::after {
+	bottom: 10%;
+  }
