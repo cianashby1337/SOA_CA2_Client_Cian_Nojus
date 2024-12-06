@@ -4,6 +4,7 @@ import React, { useEffect,useState } from 'react';
 
 import './AddGameForm.css';
 
+// Takes the target table and it's version as inputs, performing a GET for all records
 async function getAllFrom(version:number,table:string) {
 	try {
 		const { data, status } = await axios.get(
@@ -29,9 +30,7 @@ async function getAllFrom(version:number,table:string) {
 	}
 }
 
-// TODO for handleSubmit:
-// - In the case the user doesn't change the release date form input before submitting, find out how to assume the current year in place of "undefined"
-
+// Ensures all form items are filled, sending a POST to the games of the API if suitable
 async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,formDeveloper:number,formPlatforms:string[]) {
 	console.log("Title: " + formTitle);
 	console.log("Genre: " + formGenre);
@@ -74,15 +73,15 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 			// The fix for the axios.post() issue, where we got a 401 error even with the key being sent, was found here, revealing a formatting error in the post method:
 			// https://axios-http.com/docs/post_example
 			const { data, status } = await axios.post(
-			url ,
-			{
-				"Id":0,
-				"title": formTitle,
-				"genre": formGenre,
-				"release_year": date.getFullYear(),
-				"developerId": formDeveloper,
-				"Platforms": formPlatforms,
-			},
+				url ,
+				{
+					"Id":0,
+					"title": formTitle,
+					"genre": formGenre,
+					"release_year": date.getFullYear(),
+					"developerId": formDeveloper,
+					"Platforms": formPlatforms,
+				},
 				{
 					headers: {
 						Accept: 'application/json',
@@ -106,10 +105,12 @@ async function handleSubmit(formTitle:string,formGenre:string,formRelease:Date,f
 	}
 }
 	
+// Interface defining the properties to be passed into AddGameForm
 interface AddGameFormProps {
 	isAdministrator: boolean;
   }
 
+// Render the AddGameForm Component
 const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 	const [developers, setDevelopers] = useState<any[]>([]);
 	const [platforms, setPlatforms] = useState<any[]>([]);
@@ -130,6 +131,7 @@ const AddGameForm: React.FC<AddGameFormProps> = ({isAdministrator}) => {
 	// IonDatetime was referenced from: https://ionicframework.com/docs/api/datetime#wheel-style-pickers
 	// IonSelect and IonSelectOption were referenced from: https://ionicframework.com/docs/api/select
 
+  // Renders the form for administrators, but renders an error message for users
   return isAdministrator? (
 		<>
 		     <div className = "banner_add_games" >

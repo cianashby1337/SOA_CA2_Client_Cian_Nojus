@@ -1,11 +1,11 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 
 
 import { GoogleLogin } from '@react-oauth/google';
 
 // Function to decode the response was taken from wbq's answer at https://stackoverflow.com/questions/68524360/how-can-i-decode-a-google-oauth-2-0-jwt-credential-token
+// Converts the encoded response from google login API into a JSON response we can work with
 function decodeJwtResponse(token:string) {
   var base64Url = token.split('.')[1];
   var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -21,6 +21,7 @@ interface ScanNewProps {
   login: any;
 }
 
+// Render the Tab2 Component
 const Tab2: React.FC<ScanNewProps> = ({login}) => {
   
   return (

@@ -1,10 +1,8 @@
-import { IonButton, IonButtons, IonContent, IonFooter, IonHeader, IonIcon, IonMenu, IonMenuButton, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonMenu, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab1.css';
-import { apps, book, code, grid, home, mail, person } from 'ionicons/icons';
 
+// Render the Tab1 Component
 const Tab1: React.FC = () => {
-const handleSectionClick = (section:string) => { };
 
 // Side menu code taken from https://ionicframework.com/docs/api/menu
   return (

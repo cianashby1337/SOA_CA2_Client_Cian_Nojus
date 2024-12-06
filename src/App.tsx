@@ -66,11 +66,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 setupIonicReact();
 
-interface responseContainer {
-  data:any,
-  status:number
-}
-
+// Checks the API for an existing user by the validated google login email
 async function tryLogin(email:string) {
   try {
     const { data, status } = await axios.get(
@@ -96,12 +92,14 @@ async function tryLogin(email:string) {
   }
 }
 
-
+// Render the main App Component
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [isAdministrator, setIsAdministrator] = useState<boolean>(false
-  );
 
+  // Handle states for user status within the application 
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [isAdministrator, setIsAdministrator] = useState<boolean>(false);
+
+  // Handles login attempts and the response from that attempt
   function googleLogin(emailAddress:string) {
     tryLogin(emailAddress)
     .then(response => {
@@ -111,25 +109,27 @@ const App: React.FC = () => {
     })
   }
 
+  // Sets the states for user status appropriately, based on user information recieved from the API
   function handleSuccessfulLogin(response:{data:any,status:number}) {
     setLoggedIn(true);
     response.data.isAdministrator ? setIsAdministrator(true) : null;
   }
 
- 
+ // Define each possible tab as a constant
   const homeScreen = <Tab1 />
   const loginScreen = <Tab2 login={googleLogin}/>
   const tableScreen = <Tab3 />
   const addGameScreen = <AddGame isAdministrator={isAdministrator}/>
 
   return (
+    // Wrap the application with the element providing google OAuth services
   <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_LOGIN}>
     <IonApp>
       <IonReactRouter>
         <IonTabs>
+          {/* Link to different tabs based on URL, restricted based on user login status */}
           <IonRouterOutlet>
             <Route exact path="/home">
-            
               {loggedIn ? homeScreen : loginScreen}
             </Route>
             <Route exact path="/login">
@@ -205,12 +205,12 @@ const App: React.FC = () => {
       <IonHeader collapse="condense">
    
         <IonToolbar>
-          
           <IonTitle size="large">Tab 1</IonTitle>
         </IonToolbar>
       </IonHeader>
   </IonPage>
 
+          {/* Shows the tab bar if the user is logged in, otherwise it doesn't render */}
           {loggedIn ? <IonTabBar slot="bottom">
             <IonTabButton tab="Documentation" href="/home">
               <IonIcon aria-hidden="true" icon={book} />

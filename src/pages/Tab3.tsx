@@ -1,5 +1,4 @@
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 import React, { useEffect,useState } from 'react';
 
@@ -8,6 +7,7 @@ import axios from 'axios';
 // The function below, which gets data from our web api, was constructed with assistance 
 // from https://bobbyhadz.com/blog/typescript-http-request-axios#making-http-get-requests-with-axios-in-typescript
 
+// GET all platforms from the API
 async function getPlatforms() {
   try {
     const { data, status } = await axios.get(
@@ -33,6 +33,7 @@ async function getPlatforms() {
   }
 }
 
+// GET all developers from the API
 async function getDevelopers() {
   try {
     const { data, status } = await axios.get(
@@ -58,7 +59,7 @@ async function getDevelopers() {
   }
 }
 
-
+// GET all games from the API
 async function getGames() {
   try {
     const { data, status } = await axios.get(
@@ -84,8 +85,10 @@ async function getGames() {
   }
 }
 
-
+// Render the Tab3 Component
 const Tab3: React.FC = () => {
+
+  // Handle states for each table, populated with a GET from the API 
   const [games, setGames] = useState<any[]>([]);
   const [developers, setDevelopers] = useState<any[]>([]);
   const [platforms, setPlatforms] = useState<any[]>([]);
