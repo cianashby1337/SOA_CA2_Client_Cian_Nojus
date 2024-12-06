@@ -1,12 +1,13 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../../components/ExploreContainer';
 import './AddGame.css';
 import AddGameForm from './AddGameForm';
 
+// Interface defining the properties to be passed into AddGame
 interface AddGameProps {
 	isAdministrator: boolean;
-  }
+}
 
+// Render the AddGame Component
 const AddGame: React.FC<AddGameProps> = ({isAdministrator}) => {
   return (
     <IonPage>
