@@ -62,7 +62,7 @@ interface responseContainer {
 async function tryLogin(email:string) {
   try {
     const { data, status } = await axios.get(
-    `https://localhost:7241/api/users/login/${email}`,
+    `https://localhost:7241/api/v1/users/login/${email}`,
     {
       headers: {
       Accept: 'application/json',
