@@ -74,7 +74,7 @@ interface responseContainer {
 async function tryLogin(email:string) {
   try {
     const { data, status } = await axios.get(
-    `https://localhost:7241/api/v1/users/login/${email}`,
+    `https://soaca2-bzfygkfvccdgdbcw.ukwest-01.azurewebsites.net/api/v1/users/login/${email}`,
     {
       headers: {
       Accept: 'application/json',
