@@ -7,3 +7,116 @@ ion-tab-button::part(native) {
   }
   
   
+.header_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  padding: 0 20px;
+  border-radius: 5px;
+  font-family: serif;
+}
+
+ion-searchbar {
+  --background: #333333 !important;
+  --color: white;
+  --border-radius: 5px;
+  --placeholder-color: white;
+  --placeholder-opacity: 0.5;
+  --border-width: 0;
+  --box-shadow: none;
+  margin-left: 2%;
+}
+
+
+.overlay_text_bottom {
+  font-family: serif;
+  position: absolute;
+  top: 55%; 
+  left: 88%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+}
+
+.header_button:hover {
+  border-bottom: 2px solid #c42741;
+  padding: 0 20px;
+  background-color: rgb(39, 39, 39);
+}
+p{
+  color: rgb(238, 238, 238) !important;
+}
+
+.doc_Title{
+  border-bottom: 2px solid #c42741;
+  font-family: serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.doc {
+  background-color: #c42741;
+  color: white;
+  font-family: serif;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.ion-page.menu-content.menu-content-overlay {
+  pointer-events: none;
+}
+
+.ion-header,ion-searchbar,.doc_Title,ion-menu-button, .ion-toolbar, .ion-buttons, .ion-menu-button, .logo, .header_button {
+  pointer-events: auto;
+}
+
+.logo {
+  color: rgb(227, 227, 227);
+  font-family: serif;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+@media (max-width: 970px) {
+  .logo {
+    display: none;
+  }
+}
+
+.doc1{
+  background-color: #272727;
+  color: white;
+  font-family: serif;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+.doc2{
+  background-color: #9d3d3d;
+  color: white;
+  font-family: serif;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+
+
+.footer_border {
+  border-top: 2px solid #c42741;
+  margin-top: 20px;
+  text-align: center;
+
+}
+

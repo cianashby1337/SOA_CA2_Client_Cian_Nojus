@@ -69,7 +69,7 @@ h1 {
 /*------------------Pagination button----------------*/
 
 .pagination_button {
-    background-color: #920303;
+    background-color: #c42741;
     color: white; 
     border: none; 
     padding: 3px 6px;
@@ -83,7 +83,7 @@ h1 {
 }
 
 .pagination_button:hover {
-    background-color: #2e0000;
+    background-color: #9b1e2b;
 }
 
 .pagination_container {
@@ -94,17 +94,17 @@ h1 {
 }
 
 ion-button.pagination_button {
-    --background: #920303;
-    --background-activated: #2e0000; 
-    --background-focused: #920303; 
-    --background-hover: #2e0000; 
+    --background: #c42741;
+    --background-activated: #9b1e2b; 
+    --background-focused: #c42741; 
+    --background-hover: #9b1e2b; 
     --color: white; 
     --box-shadow: none;
     --border-radius: 4px; 
 }
 
 ion-button.pagination_button:hover {
-    --background: #2e0000;
+    --background: #9b1e2b;
 }
 
 ion-button.pagination_button:focus {
@@ -113,5 +113,34 @@ ion-button.pagination_button:focus {
 }
 
 ion-button.pagination_button:active {
-    --background: #2e0000;
+    --background: #9b1e2b;
+}
+
+
+.left_banner_image_tables{
+	width: 9%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0.5;
+    padding-top: 50px;
+    margin-top: 5px;
+
+}
+
+.right_banner_image_tables{
+	width: 9%;
+	height: 100vh;
+	margin-bottom: 0;
+	object-fit: cover;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: -1;
+	margin-right: 20px;
+	opacity: 0.5;
 }

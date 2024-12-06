@@ -124,6 +124,14 @@ const Tab3: React.FC = () => {
             <IonTitle size="large">Smoking Barrel API</IonTitle>
           </IonToolbar>
         </IonHeader>
+
+        <div className = "banner" >
+   DATA TABLES
+    </div>
+    
+    <img src="images\6.jpg" alt="Banner Image" className="left_banner_image_tables" />
+    <img src="images\b.png" alt="Banner Image" className="right_banner_image_tables" />
+
         <h1>GAMES</h1>
         <table>
           <thead>
