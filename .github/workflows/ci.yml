@@ -32,8 +32,3 @@ jobs:
 
       - name: Run unit tests
         run: npm run test.unit
-
-        # The & part of the below command is an attempt to perform actions after running the server, referenced in https://stackoverflow.com/questions/70231685/github-actions-run-server-frontend-then-execute-tests
-        # the kill command is an attempt to stop the server listening on port 8100, referenced from https://stackoverflow.com/questions/11583562/how-to-kill-a-process-running-on-particular-port-in-linux
-      - name: Start ionic server and run e2e tests
-        run: ionic serve & sleep 10 & npm run test.e2e & sleep 60 & kill -9 $(lsof -t -i:8100)
